@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\adminController;
 use App\Http\Controllers\homeControl;
 use Illuminate\Support\Facades\Route;
 
@@ -19,7 +20,10 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get("/", [homeControl::class, "index"]);
-
+Route::get("/users", [adminController::class, "usercontroller"]);
+Route::get("/foodmenu", [adminController::class, "foodmenu"]);
+Route::post("/formUpload", [adminController::class, "foodUpload"]);
+Route::get("/deleteUser/{id}", [adminController::class, "deleteUser"]);
 Route::get("redirect", [homeControl::class, "redirect"]);
 
 Route::middleware([

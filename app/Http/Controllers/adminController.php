@@ -27,6 +27,7 @@ class adminController extends Controller
     }
     public function foodUpload(Request $req)
     {
+
         $data = new food;
         $image = $req->image;
         $imagename = time() . '.' . $image->getClientOriginalExtension();
@@ -39,5 +40,36 @@ class adminController extends Controller
         $data->foodDec = $req->des;
         $data->save();
         return redirect()->back();
+    }
+
+    public function foodMenuList()
+    {
+        $list = food::all();
+        return view("admin.foodmenu", ["list" => $list]);
+    }
+    public function deleteFoodList($id)
+    {
+        $list = food::find($id);
+        $list->delete();
+        return redirect()->back()->with('success', 'food deleted successfully');
+    }
+    public function updateview($id)
+    {
+        $data = food::find($id);
+        return view('admin.updateview', ["data" => $data]);
+    }
+    public function updateList(Request $req, $id)
+    {
+        $data = food::find($id);
+        $image = $req->image;
+        $imagename = time() . '.' . $image->getClientOriginalExtension();
+        $req->image->move("foodImage", $imagename);
+
+        $data->foodImage = $imagename;
+        $data->foodName = $req->title;
+        $data->foodPrice = $req->price;
+        $data->foodDec = $req->des;
+        $data->save();
+        return redirect()->back()->with('success', 'food updated successfully');
     }
 }

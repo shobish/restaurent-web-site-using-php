@@ -10,7 +10,7 @@
     <div class="container-scroller" style="margin-left: 25px; top:15px;">
         @include("admin.navbar")
 
-        <table class="table table-striped table-dark">
+        <table class="table table-striped table-dark" style="margin-left:25px; margin-right:25px;">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -43,13 +43,7 @@
                 </tr>
                 @endforeach
             </tbody>
-
         </table>
-
-
-
-
-
     </div>
 
 

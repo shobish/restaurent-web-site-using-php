@@ -50,6 +50,11 @@ Route::post('/reservation', [reservationController::class, "reservation"]);
 
 /** reservation panal end**/
 
+/** chef panal start**/
+Route::get('/chef', [adminController::class, "chefview"]);
+Route::post('/chefForm', [adminController::class, "chefDataEntry"]);
+/** chef panal end**/
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

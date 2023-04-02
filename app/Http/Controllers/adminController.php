@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Food;
+use App\Models\Chef;
 
 class adminController extends Controller
 {
@@ -71,5 +72,28 @@ class adminController extends Controller
         $data->foodDec = $req->des;
         $data->save();
         return redirect()->back()->with('success', 'food updated successfully');
+    }
+
+    //chef controlller//
+    public function chefview()
+    {
+        return view("admin.chef.chef");
+    }
+    //chef controlller for form//
+
+    public function chefDataEntry(Request $req)
+    {
+        $data = new chef;
+
+        $image = $req->image;
+        $imagename = time() . '.' . $image->getClientOriginalExtension();
+        $req->image->move("chefImage", $imagename);
+
+        $data->image = $imagename;
+        $data->name = $req->name;
+        $data->catagory = $req->catagory;
+
+        $data->save();
+        return redirect()->back();
     }
 }
